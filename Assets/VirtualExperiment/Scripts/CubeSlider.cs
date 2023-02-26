@@ -30,7 +30,10 @@ public class CubeSlider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(PumpName.COLDRATE1 == pump){
+        if(GameManager.instance.step == 0){
+            score = 0;
+        }
+        else if(PumpName.COLDRATE1 == pump){
             score = int.Parse(GameManager.instance.FlowRatePlateHeat[0].text);
         }
         else if(PumpName.HOTRATE1 == pump){

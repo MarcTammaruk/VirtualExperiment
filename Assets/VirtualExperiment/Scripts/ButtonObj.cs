@@ -41,5 +41,6 @@ public class ButtonObj : MonoBehaviour
     
     public void CloseModal() {
         openModal = false;
+        GameManager.instance.StartVideo();
     }
 }
