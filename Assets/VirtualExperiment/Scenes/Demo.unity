@@ -3698,8 +3698,10 @@ MonoBehaviour:
   value: {fileID: 635162179}
   unit: {fileID: 1934540282}
   topic: {fileID: 325413401}
-  coldPump: {fileID: 1712903249}
-  hotPump: {fileID: 148166369}
+  coldPumpV1: {fileID: 1712903249}
+  hotPumpV1: {fileID: 148166369}
+  coldPumpV2: {fileID: 1699668936}
+  hotPumpV2: {fileID: 430906147}
   state: 0
   Q_hot: 0
   Q_cold: 0

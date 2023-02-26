@@ -35,8 +35,11 @@ public class GameManager : MonoBehaviour
 
     private string tagName;
 
-    public RotateLockObject coldPump;
-    public RotateLockObject hotPump;
+    public RotateLockObject coldPumpV1;
+    public RotateLockObject hotPumpV1;
+
+     public RotateLockObject coldPumpV2;
+    public RotateLockObject hotPumpV2;
 
     public int state =  0;
     public float Q_hot;
@@ -111,39 +114,50 @@ public class GameManager : MonoBehaviour
             Q_cold = (-0.3707f * (hot_in - 3f)) + 8.610f;
         }
 
-        if(coldPump.Status && coldFlowRate != 0){
+        if(coldPumpV1.Status && coldFlowRate != 0){
             cold_out = (Q_cold / (coldFlowRate * 4.187f)) + cold_in;
             FlowRatePlateHeat[0].text = coldFlowRate.ToString();
+        }
+        else if(coldPumpV2.Status && coldFlowRate != 0){
+            cold_out = (Q_cold / (coldFlowRate * 4.187f)) + cold_in;
+            FlowRateDoublePipe[0].text = coldFlowRate.ToString();
         }
         else {
             cold_out = 0;
             FlowRatePlateHeat[0].text = "0";
-
-
+            FlowRateDoublePipe[0].text = "0";
         }
-        if(hotPump.Status &&  hotFlowRate != 0){
+        if(hotPumpV1.Status && hotFlowRate != 0){
             hot_out = (Q_hot / (hotFlowRate * 4.187f)) + hot_in;
             FlowRatePlateHeat[1].text = hotFlowRate.ToString();
 
         }
+        else if(hotPumpV2.Status && hotFlowRate != 0){
+            hot_out = (Q_hot / (hotFlowRate * 4.187f)) + hot_in;
+            FlowRateDoublePipe[1].text = hotFlowRate.ToString();
+        }
         else {
             hot_out = 0;
             FlowRatePlateHeat[1].text = "0";
+            FlowRateDoublePipe[1].text = "0";
         }
 
        
-        if(!coldPump.Status){
+        if(!coldPumpV1.Status){
             TempPlateHeat[1].text = "0.00";
+        }
+        else if(!coldPumpV2.Status){
             TempDoublePipe[1].text = "0.00";
         }
         else{
             TempPlateHeat[1].text = cold_out.ToString("F2");
             TempDoublePipe[1].text = cold_out.ToString("F2");
         }
-        if(!hotPump.Status){
+        if(!hotPumpV1.Status){
             TempPlateHeat[3].text = "0.00";
+        }
+        else if(!hotPumpV2.Status){
             TempDoublePipe[3].text = "0.00";
-
         }
         else{
             TempPlateHeat[3].text = hot_out.ToString("F2");
