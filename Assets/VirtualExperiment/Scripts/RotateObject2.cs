@@ -13,7 +13,7 @@ public class RotateObject2 : MonoBehaviour
     public bool openValve;
     public GameObject StatusValve;
     public Material DisableStatus, EnableStatus;
-    public int valueDegree = 40;
+    public int valueDegree;
     public int step;
     public static bool subStep1;
     public static bool subStep2;
@@ -23,6 +23,8 @@ public class RotateObject2 : MonoBehaviour
     GameObject v4;
     
     ID order;
+
+    float tmp1, tmp2;
 
     void Start()
     {
@@ -38,7 +40,7 @@ public class RotateObject2 : MonoBehaviour
     {
         if (pointer && ButtonObj.openModal)
         {
-            Debug.LogError(gameObject.transform.rotation.eulerAngles.y);
+            //Debug.LogError(gameObject.transform.rotation.eulerAngles.y);
             if (Input.GetMouseButton(0) && (gameObject.transform.rotation.eulerAngles.y >= min && gameObject.transform.rotation.eulerAngles.y <= max))
             {
                 float v = speed * Input.GetAxis("Mouse X")*-1;
@@ -53,29 +55,33 @@ public class RotateObject2 : MonoBehaviour
             {
                 transform.localEulerAngles = new Vector3(0, min, 0);
             }
-            int tmp1 = Mathf.FloorToInt((max - gameObject.transform.rotation.eulerAngles.y) / ((max - min) / 40));
-            int tmp2 = Mathf.FloorToInt((max - gameObject.transform.rotation.eulerAngles.y) / ((max - min) / tmp1 - 10));
-            valueDegree = tmp2 + (tmp1 - (tmp2*2));
-            Debug.Log(this.gameObject.tag);
-             if(this.gameObject.name == "Valve1_03_Pivot" || this.gameObject.name == "Valve2_03_Pivot"){
-                GameManager.instance.hotFlowRate = valueDegree;
-            }
-            else if(this.gameObject.name == "Valve1_01_Pivot" || this.gameObject.name == "Valve2_01_Pivot"){
-                GameManager.instance.coldFlowRate = valueDegree;
-            }
-            if(this.gameObject.name == "Valve1_04_Pivot" || this.gameObject.name == "Valve2_04_Pivot"){
-                GameManager.instance.hotFlowRate = valueDegree;
-            }
-            else if(this.gameObject.name == "Valve1_02_Pivot" || this.gameObject.name == "Valve2_02_Pivot"){
-                GameManager.instance.coldFlowRate = valueDegree;
-            }
-            Debug.Log("Tmp1 "+tmp1);
-            Debug.Log("Tmp2 "+tmp2);
-            Debug.Log("valueDegree "+valueDegree);
 
+            //tmp1 = Mathf.FloorToInt((max - gameObject.transform.rotation.eulerAngles.y) / ((max - min) / 40));
+            //tmp2 = Mathf.FloorToInt((max - gameObject.transform.rotation.eulerAngles.y) / ((max - min) / tmp1 - 10));
+            //valueDegree = tmp2 + (tmp1 - (tmp2*2));
+
+            if (this.gameObject.name == "Valve1_01_Pivot" || this.gameObject.name == "Valve2_01_Pivot")
+            {
+                tmp1 = (max - gameObject.transform.rotation.eulerAngles.y) / ((max - min) / 40);
+                GameManager.instance.setFlowRate(1,tmp1);
+            }
+            else if (this.gameObject.name == "Valve1_02_Pivot" || this.gameObject.name == "Valve2_02_Pivot")
+            {
+                tmp2 = Mathf.FloorToInt((max - gameObject.transform.rotation.eulerAngles.y) / ((max - min) / 100));
+                GameManager.instance.setFlowRate(2, tmp2);
+            }
+            else if (this.gameObject.name == "Valve1_03_Pivot" || this.gameObject.name == "Valve2_03_Pivot")
+            {
+                tmp1 = Mathf.FloorToInt((max - gameObject.transform.rotation.eulerAngles.y) / ((max - min) / 40));
+                GameManager.instance.setFlowRate(3, tmp1);
+            }
+            else if (this.gameObject.name == "Valve1_04_Pivot" || this.gameObject.name == "Valve2_04_Pivot"){
+                tmp2 = Mathf.FloorToInt((max - gameObject.transform.rotation.eulerAngles.y) / ((max - min) / 100));
+                GameManager.instance.setFlowRate(4, tmp2);
+            }
         }
-           if(order.playAll && GameManager.instance.step != 0 ){
-             if(gameObject.transform.rotation.eulerAngles.y == min)
+        if(order.playAll && GameManager.instance.step != 0 ){
+            if(gameObject.transform.rotation.eulerAngles.y < max)
             {
                 openValve = true;
                 // GameManager.instance.step = 2;
@@ -83,13 +89,13 @@ public class RotateObject2 : MonoBehaviour
                 if(gameObject.name == "Valve1_01_Pivot" || gameObject.name == "Valve2_01_Pivot"){
                     subStep1 = true;
                     v2.GetComponent<MeshRenderer>().material = EnableStatus;
-                    GameManager.instance.coldFlowRate = 40;
+                    //GameManager.instance.coldFlowRate = 40;
 
                 }
                 else if(gameObject.name == "Valve1_03_Pivot" || gameObject.name == "Valve2_03_Pivot"){
                     v4.GetComponent<MeshRenderer>().material = EnableStatus;
                     subStep2 = true;
-                    GameManager.instance.hotFlowRate = 40;
+                    //GameManager.instance.hotFlowRate = 40;
                 }
             }
             else
@@ -100,13 +106,11 @@ public class RotateObject2 : MonoBehaviour
                  if(gameObject.name == "Valve1_01_Pivot" || gameObject.name == "Valve2_01_Pivot"){
                     subStep1 = false;
                     v2.GetComponent<MeshRenderer>().material = DisableStatus;
-                     GameManager.instance.coldFlowRate = 0;
 
                 }
                 else if(gameObject.name == "Valve1_03_Pivot" || gameObject.name == "Valve2_03_Pivot"){
                     v4.GetComponent<MeshRenderer>().material = DisableStatus;
                     subStep2 = false;
-                    GameManager.instance.hotFlowRate = 0;
                 }
             }   
         }

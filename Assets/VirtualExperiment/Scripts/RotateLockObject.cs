@@ -30,7 +30,7 @@ public class RotateLockObject : MonoBehaviour
                 if (Input.GetMouseButton(0))
                     {
                         float v = speed * Input.GetAxis("Mouse Y");
-                        Debug.Log(v);
+                        //Debug.Log(v);
                         if (AxisIsX)
                         {
                             if (v > 1)

@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] text; 
     public Material DisableStatus;
 
+    public float[] valve = new float[4];
 
     Dictionary<string,Vector3> item = new Dictionary<string,Vector3>() {
         { "Fuses1_01",new Vector3(1.4f,10.26f,2.26f) },
@@ -163,6 +164,51 @@ public class GameManager : MonoBehaviour
         // }
     }
 
+    public void setFlowRate(int n,float value)
+    {
+        /*
+        if (n == 2 || n == 4)
+        {
+            valve[n - 1] = Mathf.FloorToInt((value / 100) * valve[n - 2]);
+        }
+        else
+        {
+            valve[n - 1] = Mathf.FloorToInt(value);
+            //valve[n] = Mathf.FloorToInt((value / 100) * valve[n - 1]);
+        }
+        */
+
+        valve[n - 1] = value;
+
+        float percent1, percent3;
+
+        percent1 = ((valve[1] / 100) * (valve[0] - 10));
+        percent3 = ((valve[3] / 100) * (valve[2] - 10));
+
+        coldFlowRate = Mathf.FloorToInt(percent1 + (valve[0] - (percent1 * 2)));
+        hotFlowRate = Mathf.FloorToInt(percent3 + (valve[2] - (percent3 * 2)));
+
+        if (valve[0] == 0)
+        {
+            coldFlowRate = 0;
+        }
+        else if(valve[0] < 10)
+        {
+            coldFlowRate = 10;
+        }
+
+        if (valve[2] == 0)
+        {
+            hotFlowRate = 0;
+        }
+        else if (valve[2] < 10)
+        {
+            hotFlowRate = 10;
+        }
+        //coldFlowRate = Mathf.FloorToInt(valve[1] + (valve[0] - (valve[1] * 2)));
+        //hotFlowRate = Mathf.FloorToInt(valve[3] + (valve[2] - (valve[3] * 2)));
+    }
+
     public void SetModeGame(int mode)
     {
         modeGame = mode;
@@ -269,6 +315,11 @@ public class GameManager : MonoBehaviour
         RotateObject2.subStep2 = false;
         foreach (GameObject obj in text){
             obj.GetComponent<MeshRenderer>().material = DisableStatus;
+        }
+
+        for(int i = 0; i < valve.Length; i++)
+        {
+            valve[i] = 0f;
         }
 
     }

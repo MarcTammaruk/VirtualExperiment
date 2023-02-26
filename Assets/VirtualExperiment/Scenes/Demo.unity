@@ -3720,6 +3720,11 @@ MonoBehaviour:
   - {fileID: 1663151307}
   - {fileID: 536605369}
   DisableStatus: {fileID: 2100000, guid: 7a5231e7bda122844acc02c7db44e0bc, type: 2}
+  valve:
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!4 &332868149
 Transform:
   m_ObjectHideFlags: 0
@@ -9286,7 +9291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9169783650c12c94b86adc7383f0ad5c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1167372821419825478, guid: 9169783650c12c94b86adc7383f0ad5c, type: 3}
       propertyPath: m_LocalPosition.x
