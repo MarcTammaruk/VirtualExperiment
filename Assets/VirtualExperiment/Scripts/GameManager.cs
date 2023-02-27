@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -345,5 +346,15 @@ public class GameManager : MonoBehaviour
     public void PauseVideo()
     {
         videoPlayer[modeGame-1].Pause();
+    }
+
+    public void QuitProgram()
+    {
+        Application.Quit();
+    }
+
+    public void HomeProgram()
+    {
+        SceneManager.LoadScene(0);
     }
 }
