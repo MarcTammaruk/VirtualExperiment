@@ -8,6 +8,10 @@ TagManager:
   - valve
   - switch_hot
   - switch_cold
+  - V1_Cold
+  - V2_ByPass
+  - V3_Hot
+  - V4_ByPass
   layers:
   - Default
   - TransparentFX
