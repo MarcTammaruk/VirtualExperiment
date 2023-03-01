@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
 
     public float[] valve = new float[4];
 
+
     Dictionary<string,Vector3> item = new Dictionary<string,Vector3>() {
         { "Fuses1_01",new Vector3(1.4f,10.26f,2.26f) },
         { "Fuses1_02",new Vector3(-0.14f,10.26f,2.26f) },
@@ -187,11 +188,26 @@ public class GameManager : MonoBehaviour
         TempDoublePipe[2].text = hot_in.ToString("F2");
 
         // if(tagName == "switch_cold"){
-        //     value.text = coldTemp.ToString();
+            // value.text = coldTemp.ToString();
         // }
         // if(tagName == "switch_hot"){
         //     value.text = hotTemp.ToString();
         // }
+        if(tagName == "switch_cold"){
+            value.text = coldTemp.ToString();
+        }
+        else if(tagName == "switch_hot"){
+            value.text = hotTemp.ToString();
+
+        }
+        else if(tagName == "V1_Cold" || tagName == "V2_ByPass"){
+            value.text = coldFlowRate.ToString();
+
+        }
+        else if(tagName == "V3_Hot" || tagName == "V4_ByPass"){
+            value.text = hotFlowRate.ToString();
+
+        }
     }
 
     public void setFlowRate(int n,float value)
@@ -270,41 +286,41 @@ public class GameManager : MonoBehaviour
             if(obj.tag == "switch_cold"){
                 topic.text = "Temperature";
                 name.text = "Cold in :";
-                value.text = coldTemp.ToString();
+                // value.text = coldTemp.ToString();
                 unit.text = "°C";
             }
             else if(obj.tag == "switch_hot"){
                 topic.text = "Temperature";
                 name.text = "Hot in :";
-                value.text = hotTemp.ToString();
+                // value.text = hotTemp.ToString();
                 unit.text = "°C";
             }
             else if(obj.tag == "V1_Cold")
             {
                 topic.text = "Cold Water";
                 name.text = "Flow rate :";
-                value.text = coldFlowRate.ToString();
+                // value.text = coldFlowRate.ToString();
                 unit.text = "LPM";
             }
             else if (obj.tag == "V2_ByPass")
             {
                 topic.text = "Cold Water";
                 name.text = "Flow rate :";
-                value.text = coldFlowRate.ToString();
+                // value.text = coldFlowRate.ToString();
                 unit.text = "LPM";
             }
             else if (obj.tag == "V3_Hot")
             {
                 topic.text = "Hot Water";
                 name.text = "Flow rate :";
-                value.text = hotFlowRate.ToString();
+                // value.text = hotFlowRate.ToString();
                 unit.text = "LPM";
             }
             else if (obj.tag == "V4_ByPass")
             {
                 topic.text = "Hot Water";
                 name.text = "Flow rate :";
-                value.text = hotFlowRate.ToString();
+                // value.text = hotFlowRate.ToString();
                 unit.text = "LPM";
             }
             else {
