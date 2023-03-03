@@ -4503,7 +4503,9 @@ MonoBehaviour:
   - 0
   - 0
   v5: {fileID: 1882727400}
+  v5_pivot: {fileID: 358328353}
   v6: {fileID: 1701623954}
+  v6_pivot: {fileID: 1892236561}
 --- !u!4 &332868149
 Transform:
   m_ObjectHideFlags: 0
@@ -7912,6 +7914,7 @@ MonoBehaviour:
   objOpen:
   - {fileID: 1954228134}
   - {fileID: 1056229191}
+  - {fileID: 2128475211}
 --- !u!1 &635162177
 GameObject:
   m_ObjectHideFlags: 0
@@ -8317,6 +8320,7 @@ MonoBehaviour:
   objOpen:
   - {fileID: 1954228134}
   - {fileID: 1056229191}
+  - {fileID: 2128475211}
 --- !u!1 &666497905 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6786143921476331015, guid: 9169783650c12c94b86adc7383f0ad5c, type: 3}
@@ -8624,6 +8628,7 @@ MonoBehaviour:
   objOpen:
   - {fileID: 1954228134}
   - {fileID: 1056229191}
+  - {fileID: 681678}
 --- !u!1 &678671500
 GameObject:
   m_ObjectHideFlags: 0
@@ -20477,6 +20482,7 @@ MonoBehaviour:
   objOpen:
   - {fileID: 1954228134}
   - {fileID: 1056229191}
+  - {fileID: 681678}
 --- !u!1 &1663151307 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1260480650886408701, guid: 9169783650c12c94b86adc7383f0ad5c, type: 3}

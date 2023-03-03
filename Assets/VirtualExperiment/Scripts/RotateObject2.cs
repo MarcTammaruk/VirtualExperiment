@@ -54,6 +54,7 @@ public class RotateObject2 : MonoBehaviour
             else if (gameObject.transform.rotation.eulerAngles.y < min || gameObject.transform.rotation.eulerAngles.y > 180)
             {
                 transform.localEulerAngles = new Vector3(0, min, 0);
+                /*
                 if(this.gameObject.name == "Valve2_05_Pivot" && GameManager.instance.modeGame == 4){
                     StatusValve.GetComponent<MeshRenderer>().material = EnableStatus;
                     new1 = true;
@@ -63,7 +64,9 @@ public class RotateObject2 : MonoBehaviour
                     new1 = true;
 
                 }
+                */
             }
+            /*
             else {
                 if(this.gameObject.name == "Valve2_05_Pivot" && GameManager.instance.modeGame == 4 && new1 == true){
                     StatusValve.GetComponent<MeshRenderer>().material = DisableStatus;
@@ -73,6 +76,39 @@ public class RotateObject2 : MonoBehaviour
                     StatusValve.GetComponent<MeshRenderer>().material = DisableStatus;
                     new1 = false;
                 }
+            }
+            */
+
+            if (this.gameObject.name == "Valve2_05_Pivot" && GameManager.instance.modeGame == 4)
+            {
+                if (gameObject.transform.rotation.eulerAngles.y <= min)
+                {
+                    StatusValve.GetComponent<MeshRenderer>().material = EnableStatus;
+                    new1 = true;
+                    openValve = true;
+                }
+                else
+                {
+                    StatusValve.GetComponent<MeshRenderer>().material = DisableStatus;
+                    new1 = false;
+                    openValve = false;
+                }
+            }
+            else if (this.gameObject.name == "Valve2_06_Pivot" && GameManager.instance.modeGame == 3)
+            {
+                if(gameObject.transform.rotation.eulerAngles.y <= min)
+                {
+                    StatusValve.GetComponent<MeshRenderer>().material = EnableStatus;
+                    new1 = true;
+                    openValve = true;
+                }
+                else
+                {
+                    StatusValve.GetComponent<MeshRenderer>().material = DisableStatus;
+                    new1 = false;
+                    openValve = false;
+                }
+
             }
 
             if (this.gameObject.name == "Valve1_01_Pivot" || this.gameObject.name == "Valve2_01_Pivot")

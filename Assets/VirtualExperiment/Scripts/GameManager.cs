@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     public RotateLockObject coldPumpV1;
     public RotateLockObject hotPumpV1;
 
-     public RotateLockObject coldPumpV2;
+    public RotateLockObject coldPumpV2;
     public RotateLockObject hotPumpV2;
 
     public int state =  0;
@@ -54,22 +54,24 @@ public class GameManager : MonoBehaviour
     public float[] valve = new float[4];
 
     public GameObject v5;
+    public RotateObject2 v5_pivot;
     public GameObject v6;
+    public RotateObject2 v6_pivot;
 
 
     Dictionary<string,Vector3> item = new Dictionary<string,Vector3>() {
         { "Fuses1_01",new Vector3(1.4f,10.26f,2.26f) },
         { "Fuses1_02",new Vector3(-0.14f,10.26f,2.26f) },
-        { "Valve1_01",new Vector3(-1.97f,10.26f,-1.67f) },
-        { "Valve1_02",new Vector3(-1.97f,10.26f,-1.13f) },
-        { "Valve1_03",new Vector3(-1.97f,10.26f,-0.44f) },
-        { "Valve1_04",new Vector3(-1.97f,10.26f,0.17f) },
-        { "Valve2_01",new Vector3(-2.06f,10.26f,-3.07f) },
-        { "Valve2_02",new Vector3(-1.97f,10.26f,-2.52f) },
-        { "Valve2_03",new Vector3(-1.97f,10.26f,-1.78f) },
-        { "Valve2_04",new Vector3(-1.97f,10.26f,-1.17f) },
-        { "Valve2_05",new Vector3(-1.97f,10.26f,-0.31f) },
-        { "Valve2_06",new Vector3(-1.97f,10.26f,-0.03f) },
+        { "Valve1_01",new Vector3(-1.82f,10.26f,-1.67f) },
+        { "Valve1_02",new Vector3(-1.82f,10.26f,-1.13f) },
+        { "Valve1_03",new Vector3(-1.82f,10.26f,-0.44f) },
+        { "Valve1_04",new Vector3(-1.82f,10.26f,0.17f) },
+        { "Valve2_01",new Vector3(-1.62f,10.26f,-3.07f) },
+        { "Valve2_02",new Vector3(-1.62f,10.26f,-2.52f) },
+        { "Valve2_03",new Vector3(-1.62f,10.26f,-1.78f) },
+        { "Valve2_04",new Vector3(-1.62f,10.26f,-1.17f) },
+        { "Valve2_05",new Vector3(-2.45f,10.26f,-0.31f) },
+        { "Valve2_06",new Vector3(-2.45f,10.26f,-0.03f) },
         { "Fuses2_01",new Vector3(0.051f,10.26f,2.113f) },
         { "Fuses2_02",new Vector3(1.804f,10.26f,2.113f) },
     };
@@ -210,6 +212,12 @@ public class GameManager : MonoBehaviour
         else if(tagName == "V3_Hot" || tagName == "V4_ByPass"){
             value.text = hotFlowRate.ToString();
 
+        }
+
+        if ((!v5_pivot.openValve && modeGame == 4) || (!v6_pivot.openValve && modeGame == 3))
+        {
+            coldFlowRate = 0;
+            hotFlowRate = 0;
         }
     }
 
