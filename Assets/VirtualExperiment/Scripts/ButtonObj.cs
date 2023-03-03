@@ -25,7 +25,7 @@ public class ButtonObj : MonoBehaviour
     public void OnClickBtn() 
     {
         if((order.playAll && GameManager.instance.step != 0) || (!order.playAll && GameManager.instance.step != 0)){
-            if((!order.playAll && order.id == 1 && RotateObject2.subStep1) || (!order.playAll && order.id == 2 && RotateObject2.subStep2) || order.playAll){
+            if((!order.playAll && order.id == 10 && RotateObject2.new1) || (!order.playAll && order.id == 1 && RotateObject2.subStep1 && RotateObject2.new1) || (!order.playAll && order.id == 2 && RotateObject2.subStep2 && RotateObject2.new1) || order.playAll){
                 
                 foreach (GameObject _objClose in objClose){
                     _objClose.SetActive(false);

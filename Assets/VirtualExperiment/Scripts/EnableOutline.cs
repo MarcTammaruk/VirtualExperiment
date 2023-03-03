@@ -34,7 +34,7 @@ public class EnableOutline : EventTrigger
     public override void OnPointerEnter(PointerEventData data)
     {
         if((order.playAll && GameManager.instance.step != 0) || !order.playAll){
-            if((!order.playAll && order.id == 1 && RotateObject2.subStep1) || (!order.playAll && order.id == 2 && RotateObject2.subStep2) || order.playAll){
+            if((!order.playAll && order.id == 10 && RotateObject2.new1) || (!order.playAll && order.id == 1 && RotateObject2.subStep1 && RotateObject2.new1) || (!order.playAll && order.id == 2 && RotateObject2.subStep2 && RotateObject2.new1) || order.playAll){
                 gameObject.enabled = true;
                 openModal = true;
            }
@@ -44,7 +44,7 @@ public class EnableOutline : EventTrigger
     public override void OnPointerExit(PointerEventData data)
     {
         if((order.playAll && GameManager.instance.step != 0) || !order.playAll){
-            if((!order.playAll && order.id == 1 && RotateObject2.subStep1) || (!order.playAll && order.id == 2 && RotateObject2.subStep2) || order.playAll){
+            if((!order.playAll && order.id == 10 && RotateObject2.new1) || (!order.playAll && order.id == 1 && RotateObject2.subStep1 && RotateObject2.new1) || (!order.playAll && order.id == 2 && RotateObject2.subStep2 && RotateObject2.new1) || order.playAll){
                     if(GameManager.instance.nameObjectSelect == gameObject.name && gameObject.enabled == false){
                     gameObject.enabled = true;
                     openModal = false;

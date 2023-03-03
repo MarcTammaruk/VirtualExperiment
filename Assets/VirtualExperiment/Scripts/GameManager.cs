@@ -53,6 +53,9 @@ public class GameManager : MonoBehaviour
 
     public float[] valve = new float[4];
 
+    public GameObject v5;
+    public GameObject v6;
+
 
     Dictionary<string,Vector3> item = new Dictionary<string,Vector3>() {
         { "Fuses1_01",new Vector3(1.4f,10.26f,2.26f) },
@@ -258,6 +261,21 @@ public class GameManager : MonoBehaviour
     public void SetModeGame(int mode)
     {
         modeGame = mode;
+
+        if(mode == 4){
+            v6.GetComponent<BoxCollider>().enabled = false;
+            v5.GetComponent<BoxCollider>().enabled = true;
+            RotateObject2.new1 = false;
+        }
+        else if(mode == 3){
+            v5.GetComponent<BoxCollider>().enabled = false;
+            v6.GetComponent<BoxCollider>().enabled = true;
+            RotateObject2.new1 = false;
+        }
+        else {
+            RotateObject2.new1 = true;
+        }
+
     }
 
     // public void onPointerEnter()
@@ -279,7 +297,7 @@ public class GameManager : MonoBehaviour
 
     public void SetSelectObject(GameObject obj)
     {
-        Debug.Log("SetSelct");
+        Debug.Log("SetSelct "+ EnableOutline.openModal);
         if(selectObject == null && EnableOutline.openModal)
         {
             tagName = obj.tag;
@@ -376,6 +394,7 @@ public class GameManager : MonoBehaviour
         nameObjectSelect = "";
         tagName = "";
         selectObject = null;
+        EnableOutline.openModal = false;
     }
 
     public void ResetButton() 
@@ -388,6 +407,7 @@ public class GameManager : MonoBehaviour
         coldFlowRate = 0;
         RotateObject2.subStep1 = false;
         RotateObject2.subStep2 = false;
+        RotateObject2.new1 = false;
         foreach (GameObject obj in text){
             obj.GetComponent<MeshRenderer>().material = DisableStatus;
         }
@@ -396,7 +416,10 @@ public class GameManager : MonoBehaviour
         {
             valve[i] = 0f;
         }
-
+        coldPumpV1.Status = false;
+        coldPumpV2.Status = false;
+        hotPumpV1.Status = false;
+        hotPumpV2.Status = false;
     }
     public void StartVideo()
     {
@@ -415,6 +438,7 @@ public class GameManager : MonoBehaviour
 
     public void HomeProgram()
     {
+        ResetButton();
         SceneManager.LoadScene(0);
     }
 }
