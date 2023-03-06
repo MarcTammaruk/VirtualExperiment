@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
         else if(modeGame == 2)
         {
             Q_hot = (-2.9859f * (cold_in - 7f)) + 2.3261f;
-            Q_cold = (-3.8381f * (hot_in - 3f)) + 42.714f;
+            Q_cold = (3.8381f * (hot_in - 3f)) + 42.714f;
         }
         else if(modeGame == 3)
         {
@@ -239,8 +239,8 @@ public class GameManager : MonoBehaviour
 
         float percent1, percent3;
 
-        percent1 = ((valve[1] / 100) * (valve[0] - 10));
-        percent3 = ((valve[3] / 100) * (valve[2] - 10));
+        percent1 = ((valve[1] / 100) * (valve[0] - 4));
+        percent3 = ((valve[3] / 100) * (valve[2] - 4));
 
         coldFlowRate = Mathf.FloorToInt(percent1 + (valve[0] - (percent1 * 2)));
         hotFlowRate = Mathf.FloorToInt(percent3 + (valve[2] - (percent3 * 2)));
@@ -249,18 +249,18 @@ public class GameManager : MonoBehaviour
         {
             coldFlowRate = 0;
         }
-        else if(valve[0] < 10)
+        else if(valve[0] < 4)
         {
-            coldFlowRate = 10;
+            coldFlowRate = 4;
         }
 
         if (valve[2] == 0)
         {
             hotFlowRate = 0;
         }
-        else if (valve[2] < 10)
+        else if (valve[2] < 4)
         {
-            hotFlowRate = 10;
+            hotFlowRate = 4;
         }
         //coldFlowRate = Mathf.FloorToInt(valve[1] + (valve[0] - (valve[1] * 2)));
         //hotFlowRate = Mathf.FloorToInt(valve[3] + (valve[2] - (valve[3] * 2)));
