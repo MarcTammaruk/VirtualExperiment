@@ -41,6 +41,7 @@ public class RotateLockObject : MonoBehaviour
                                     GameManager.instance.step = 1;
                                 }
                                 Status = true;
+                                objStatus.GetComponent<MeshRenderer>().material = GameManager.instance.EnableStatus;
                             }
                             else if (v < -1)
                             {
@@ -50,6 +51,7 @@ public class RotateLockObject : MonoBehaviour
                                     GameManager.instance.step = 0;
                                 }
                                 Status = false;
+                                objStatus.GetComponent<MeshRenderer>().material = GameManager.instance.DisableStatus;
                             }
                         }
                         else

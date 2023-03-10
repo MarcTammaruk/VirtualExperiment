@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] text; 
     public Material DisableStatus;
+    public Material EnableStatus;
 
     public float[] valve = new float[4];
 
@@ -102,31 +103,50 @@ public class GameManager : MonoBehaviour
 
        if (modeGame == 1)
         {
+            /*
             Q_hot = (-1.8672f * (cold_in - 7f)) - 316.56f;
             Q_cold = (30.879f * (hot_in - 3f)) + 360.22f;
+            */
+            Q_hot = ((0.95f*hot_in)-12)-((((3*hot_in)+180)/320)*(Mathf.Abs(hotFlowRate-coldFlowRate)));
+            Q_cold = ((1.075f*cold_in)+13.25f)-((((3*cold_in)+250)/320)*(Mathf.Abs(hotFlowRate-coldFlowRate)));
         }
         else if(modeGame == 2)
         {
+            /*
             Q_hot = (-2.9859f * (cold_in - 7f)) + 2.3261f;
             Q_cold = (3.8381f * (hot_in - 3f)) + 42.714f;
+            */
+            Q_hot = ((1.175f*hot_in)-9.25f)-((((-19*hot_in)+930)/800)*(Mathf.Abs(hotFlowRate-coldFlowRate)));
+            Q_cold = ((1.075f*cold_in)+13.25f)-((((-8429*cold_in)+332705)/400000)*(Mathf.Abs(hotFlowRate-coldFlowRate)));
         }
         else if(modeGame == 3)
         {
+            /*
             Q_hot = (-0.074f * (cold_in - 7f)) - 4.3033f;
             Q_cold = (-0.3707f * (hot_in - 3f)) + 8.610f;
+            */
+            Q_hot = ((0.9989f*hot_in)-0.0223f)-((((75*hot_in)+1834)/400000)*(Mathf.Abs(hotFlowRate-coldFlowRate)));
+            Q_cold = ((0.9992f*cold_in)+0.1135f)-((((81*cold_in)+2125)/400000)*(Mathf.Abs(hotFlowRate-coldFlowRate)));
         }
         else if(modeGame == 4)
         {
+            /*
             Q_hot = (0.2347f * (cold_in - 7f)) - 3.8382f;
             Q_cold = (-0.3707f * (hot_in - 3f)) + 8.610f;
+            */
+            
+            Q_hot = ((0.9996f*hot_in)-0.1448f)-((((31*hot_in)+25066)/400000)*(Mathf.Abs(hotFlowRate-coldFlowRate)));
+            Q_cold = ((1.0071f*cold_in)-0.1283f)-((((647*cold_in)+13293)/400000)*(Mathf.Abs(hotFlowRate-coldFlowRate)));
         }
 
-        if(coldPumpV1.Status && coldFlowRate != 0){
-            cold_out = (Q_cold / (coldFlowRate * 4.187f)) + cold_in;
+        if(coldPumpV1.Status && coldFlowRate != 0 && cold_in!= 0){
+            //cold_out = (Q_cold / (coldFlowRate * 4.187f)) + cold_in;
+            cold_out = Q_cold;
             FlowRatePlateHeat[0].text = coldFlowRate.ToString();
         }
-        else if(coldPumpV2.Status && coldFlowRate != 0){
-            cold_out = (Q_cold / (coldFlowRate * 4.187f)) + cold_in;
+        else if(coldPumpV2.Status && coldFlowRate != 0 && cold_in!= 0){
+            //cold_out = (Q_cold / (coldFlowRate * 4.187f)) + cold_in;
+            cold_out = Q_cold;
             FlowRateDoublePipe[0].text = coldFlowRate.ToString();
         }
         else {
@@ -134,13 +154,15 @@ public class GameManager : MonoBehaviour
             FlowRatePlateHeat[0].text = "0";
             FlowRateDoublePipe[0].text = "0";
         }
-        if(hotPumpV1.Status && hotFlowRate != 0){
-            hot_out = (Q_hot / (hotFlowRate * 4.187f)) + hot_in;
+        if(hotPumpV1.Status && hotFlowRate != 0 && hot_in != 0){
+            //hot_out = (Q_hot / (hotFlowRate * 4.187f)) + hot_in;
+            hot_out = Q_hot;
             FlowRatePlateHeat[1].text = hotFlowRate.ToString();
 
         }
-        else if(hotPumpV2.Status && hotFlowRate != 0){
-            hot_out = (Q_hot / (hotFlowRate * 4.187f)) + hot_in;
+        else if(hotPumpV2.Status && hotFlowRate != 0 && hot_in != 0){
+            //hot_out = (Q_hot / (hotFlowRate * 4.187f)) + hot_in;
+            hot_out = Q_hot;
             FlowRateDoublePipe[1].text = hotFlowRate.ToString();
         }
         else {

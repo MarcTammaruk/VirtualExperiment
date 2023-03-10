@@ -14,6 +14,8 @@ public class RotateObjtest : MonoBehaviour
     public float max = 225;
 
     public int valueDegree;
+
+    public GameObject ObjStatus;
     void Start()
     {
         // ResetObject();
@@ -38,7 +40,7 @@ public class RotateObjtest : MonoBehaviour
             else if (gameObject.transform.rotation.eulerAngles.y < max && gameObject.transform.rotation.eulerAngles.y > 180)
             {
                 Debug.Log("Reset Rotation 270");
-                transform.localEulerAngles = new Vector3(270, max, 0);
+                transform.localEulerAngles = new Vector3(270, max, 0); 
             }
 
             if(gameObject.transform.rotation.eulerAngles.y >= max)
@@ -51,6 +53,13 @@ public class RotateObjtest : MonoBehaviour
             {
                 valueDegree = Mathf.FloorToInt((gameObject.transform.rotation.eulerAngles.y) / ((min + (360 - max)) / 100) + 50);
                 // Debug.LogError(gameObject.transform.rotation.eulerAngles.y);
+            }
+
+            if(valueDegree == 0){
+                ObjStatus.GetComponent<MeshRenderer>().material = GameManager.instance.DisableStatus;
+            }
+            else{
+                ObjStatus.GetComponent<MeshRenderer>().material = GameManager.instance.EnableStatus;
             }
 
             if (FlowRateIsCold)

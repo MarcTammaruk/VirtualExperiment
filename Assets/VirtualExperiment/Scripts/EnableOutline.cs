@@ -31,6 +31,32 @@ public class EnableOutline : EventTrigger
     //     gameObject.enabled = false;
 
     // }
+
+    public void OnPointerEnterFunction(){
+        if((order.playAll && GameManager.instance.step != 0) || !order.playAll){
+            if((!order.playAll && order.id == 10 && RotateObject2.new1) || (!order.playAll && order.id == 1 && RotateObject2.subStep1 && RotateObject2.new1) || (!order.playAll && order.id == 2 && RotateObject2.subStep2 && RotateObject2.new1) || order.playAll){
+                gameObject.enabled = true;
+                openModal = true;
+           }
+        }
+    }
+
+    public void OnPointerExitFunction(){
+        if((order.playAll && GameManager.instance.step != 0) || !order.playAll){
+            if((!order.playAll && order.id == 10 && RotateObject2.new1) || (!order.playAll && order.id == 1 && RotateObject2.subStep1 && RotateObject2.new1) || (!order.playAll && order.id == 2 && RotateObject2.subStep2 && RotateObject2.new1) || order.playAll){
+                    if(GameManager.instance.nameObjectSelect == gameObject.name && gameObject.enabled == false){
+                    gameObject.enabled = true;
+                    openModal = false;
+
+                }
+                    else if(GameManager.instance.nameObjectSelect != gameObject.name ){
+                    gameObject.enabled = false;
+                    openModal = false;
+                 }
+            }
+        }
+    }
+
     public override void OnPointerEnter(PointerEventData data)
     {
         if((order.playAll && GameManager.instance.step != 0) || !order.playAll){
