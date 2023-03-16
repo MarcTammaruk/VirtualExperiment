@@ -333,13 +333,13 @@ public class GameManager : MonoBehaviour
             tagName = obj.tag;
             if(obj.tag == "switch_cold"){
                 topic.text = "Temperature";
-                name.text = "Cold in :";
+                name.text = "Cold inlet :";
                 // value.text = coldTemp.ToString();
                 unit.text = "°C";
             }
             else if(obj.tag == "switch_hot"){
                 topic.text = "Temperature";
-                name.text = "Hot in :";
+                name.text = "Hot inlet :";
                 // value.text = hotTemp.ToString();
                 unit.text = "°C";
             }
