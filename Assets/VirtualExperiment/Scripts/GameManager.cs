@@ -468,6 +468,14 @@ public class GameManager : MonoBehaviour
 
     public void HomeProgram()
     {
+        StartCoroutine(ClickSound());
+    }
+
+    IEnumerator ClickSound()
+    {
+        PlaySound.instance.PlaySoundClick();
+        yield return new WaitForSeconds(.3f);
+
         ResetButton();
         SceneManager.LoadScene(0);
     }
